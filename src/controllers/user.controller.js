@@ -23,7 +23,17 @@ const updateUserPassword = async (req , res) => {
 }
 
 
+const updateUser = async (req , res) => {
+    const {username , email} = req.body
+
+    await User.updateOne({_id : req.user._id} , {username , email})
+
+    res.json({message : "user updated"})
+}
+
+
 module.exports = {
     getCurrentUser , 
     updateUserPassword , 
+    updateUser
 }
