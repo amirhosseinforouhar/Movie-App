@@ -26,9 +26,20 @@ const getAllMovies = async (req , res) => {
 
     const movies = Movie.find()
 
-    if(sort === "latest") movies.sort("-createdAt") 
-    if(sort === "oldest") movies.sort("createdAt")
-    if(sort === "like") movies.sort("-likeCount")
+    // if(sort === "latest") movies.sort("-createdAt") 
+    // if(sort === "oldest") movies.sort("createdAt")
+    // if(sort === "like") movies.sort("-likeCount")
+    switch(sort) {
+        case "latest" : 
+            movies.sort("-createdAt") 
+            break ;
+        case "oldest" : 
+            movies.sort("createdAt")
+            break ;
+        case "like" : 
+            movies.sort("-likeCount")
+            break ;    
+    }
 
     // pagination  
 
