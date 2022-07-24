@@ -4,6 +4,7 @@ const errorHandlerMiddleWare = require("./src/middlewares/errorHandler.middlewar
 const notFound = require("./src/middlewares/notFound.middleware")
 const authMiddleWare = require("./src/middlewares/auth.middleware")
 const fileUpload = require("express-fileupload")
+const cookieParser = require("cookie-parser")
 const app = express ()
 
 // Security packages 
@@ -28,6 +29,7 @@ app.use(cors())
 app.use(xss())
 
 app.use(express.json())
+app.use(cookieParser())
 app.use(fileUpload())
 
 // routes

@@ -1,6 +1,6 @@
 const UnAuthenticatedError = require("../errors/unAuthenticatedError")
 const User = require("../models/user.model")
-const { createJwt } = require("../utils/jwt")
+const { createJwt , sendJwtInCookie } = require("../utils/jwt")
 
 const signUp = async (req , res) => {
     // first user is admin
@@ -24,8 +24,9 @@ const login = async (req , res) => {
 
     const accessToken = await createJwt({userId : user._id })
 
+    sendJwtInCookie(res , accessToken)
 
-    res.json({accessToken , user})
+    res.json({user})
 }
 
 const logout = async (req , res) => {
